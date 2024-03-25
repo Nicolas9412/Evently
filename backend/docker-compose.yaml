@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:14.3
+    restart: always
+    ports:
+      - '5431:5432'
+    environment:
+      POSTGRES_PASSWORD: sadsaedqwedqr12313
+      POSTGRES_DB: EventlyDB
+    container_name: evently
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
