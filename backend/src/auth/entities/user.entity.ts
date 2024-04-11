@@ -1,4 +1,11 @@
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Event } from 'src/event/entities/event.entity';
+import {
+  BeforeInsert,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('users')
 export class User {
@@ -14,6 +21,8 @@ export class User {
   isActive: boolean;
   @Column('text', { array: true, default: ['user'] })
   role: string[];
+  @OneToMany(() => Event, (event) => event.artist)
+  event: Event;
   @BeforeInsert()
   checkFieldsBeforeInsert() {
     this.email = this.email.toLowerCase().trim();
